@@ -1,0 +1,264 @@
+def Pisot.B : ℕ → ℕ :=
+fun x =>
+  Nat.brecOn x fun x f =>
+    (match (motive := (x : ℕ) → Nat.below x → ℕ) x with
+      | 0 => fun x => 6
+      | 1 => fun x => 8
+      | 2 => fun x => 11
+      | 3 => fun x => 15
+      | n.succ.succ.succ.succ => fun x => x.1 + x.2.2.2.1)
+      f
+def Pisot.u : ℤ → ℕ → ℤ :=
+fun t x =>
+  match x with
+  | 0 => t + 5
+  | n.succ => ↑(Pisot.B n) + t
+def Pisot.candidate590 : ℕ → ℤ :=
+Pisot.u 3
+def Pisot.candidate592 : ℕ → ℤ :=
+Pisot.u 4
+def Pisot.ceilingSequence : ℕ → ℕ → ℕ → ℕ :=
+fun a b x =>
+  Nat.brecOn x fun x f =>
+    (match (motive := (x : ℕ) → Nat.below x → ℕ) x with
+      | 0 => fun x => a
+      | 1 => fun x => b
+      | n.succ.succ => fun x => ⌈↑x.1 ^ 2 / ↑x.2.1⌉₊)
+      f
+def Pisot.A048590 : ℕ → ℕ :=
+Pisot.ceilingSequence 8 9
+def Pisot.A048592 : ℕ → ℕ :=
+Pisot.ceilingSequence 9 10
+def Pisot.A : Matrix (Fin 4) (Fin 4) ℤ :=
+!![1, 0, 0, 1; 1, 0, 0, 0; 0, 1, 0, 0; 0, 0, 1, 0]
+def Pisot.x : ℕ → Fin 4 → ℤ :=
+fun k => ![↑(Pisot.B (k + 3)), ↑(Pisot.B (k + 2)), ↑(Pisot.B (k + 1)), ↑(Pisot.B k)]
+def Pisot.wedgeCoord : (Fin 4 → ℤ) → (Fin 4 → ℤ) → Fin 4 → Fin 4 → ℤ :=
+fun v w i j => v i * w j - v j * w i
+def Pisot.wedge : (Fin 4 → ℤ) → (Fin 4 → ℤ) → Fin 6 → ℤ :=
+fun v w =>
+  ![Pisot.wedgeCoord v w 0 1, Pisot.wedgeCoord v w 0 2, Pisot.wedgeCoord v w 0 3, Pisot.wedgeCoord v w 1 2,
+    Pisot.wedgeCoord v w 1 3, Pisot.wedgeCoord v w 2 3]
+def Pisot.W : ℕ → Fin 6 → ℤ :=
+fun k => Pisot.wedge (Pisot.x (k + 1)) (Pisot.x k)
+def Pisot.M : Matrix (Fin 6) (Fin 6) ℤ :=
+!![0, 0, -1, 0, 0, 0; 1, 0, 0, 0, -1, 0; 0, 1, 0, 0, 0, -1; 1, 0, 0, 0, 0, 0; 0, 1, 0, 0, 0, 0; 0, 0, 0, 1, 0, 0]
+def Pisot.maxAbs6 : (Fin 6 → ℤ) → ℕ :=
+fun z => Finset.univ.sup fun i => (z i).natAbs
+def Pisot.D : ℤ → ℕ → ℤ :=
+fun t j => Pisot.u t (j + 2) * Pisot.u t j - Pisot.u t (j + 1) ^ 2
+Pisot.eq_ceil_div_iff (v q d : ℤ) (hd : 0 < d) : v = ⌈↑q / ↑d⌉ ↔ 0 ≤ v * d - q ∧ v * d - q < d
+Pisot.u3_ceil_rec (j : ℕ) : Pisot.u 3 (j + 2) = ⌈↑(Pisot.u 3 (j + 1)) ^ 2 / ↑(Pisot.u 3 j)⌉
+Pisot.u4_ceil_rec (j : ℕ) : Pisot.u 4 (j + 2) = ⌈↑(Pisot.u 4 (j + 1)) ^ 2 / ↑(Pisot.u 4 j)⌉
+Pisot.int_ceiling_sequence_unique (f g : ℕ → ℤ) (h0 : f 0 = g 0) (h1 : f 1 = g 1)
+  (hf : ∀ (j : ℕ), f (j + 2) = ⌈↑(f (j + 1)) ^ 2 / ↑(f j)⌉) (hg : ∀ (j : ℕ), g (j + 2) = ⌈↑(g (j + 1)) ^ 2 / ↑(g j)⌉)
+  (n : ℕ) : f n = g n
+Pisot.A048590_eq_candidate (n : ℕ) : ↑(Pisot.A048590 n) = Pisot.candidate590 n
+Pisot.A048592_eq_candidate (n : ℕ) : ↑(Pisot.A048592 n) = Pisot.candidate592 n
+Pisot.B_zero : Pisot.B 0 = 6
+Pisot.B_one : Pisot.B 1 = 8
+Pisot.B_two : Pisot.B 2 = 11
+Pisot.B_three : Pisot.B 3 = 15
+Pisot.B_rec (n : ℕ) : Pisot.B (n + 4) = Pisot.B (n + 3) + Pisot.B n
+Pisot.B_rec_int (n : ℕ) : ↑(Pisot.B (n + 4)) = ↑(Pisot.B (n + 3)) + ↑(Pisot.B n)
+Pisot.B_pos (n : ℕ) : 0 < Pisot.B n
+Pisot.B_step (n : ℕ) : Pisot.B n < Pisot.B (n + 1)
+Pisot.B_monotone : Monotone Pisot.B
+Pisot.B_ratio (n : ℕ) : Pisot.B (n + 1) ≤ 2 * Pisot.B n
+Pisot.u_zero (t : ℤ) : Pisot.u t 0 = t + 5
+Pisot.u_succ (t : ℤ) (n : ℕ) : Pisot.u t (n + 1) = ↑(Pisot.B n) + t
+Pisot.u_pos {t : ℤ} (ht : 0 ≤ t) (n : ℕ) : 0 < Pisot.u t n
+Pisot.u_rec (t : ℤ) (k : ℕ) : Pisot.u t (k + 5) = Pisot.u t (k + 4) + Pisot.u t (k + 1) - t
+Pisot.u_rec_of_ge (t : ℤ) (n : ℕ) (hn : 5 ≤ n) : Pisot.u t n = Pisot.u t (n - 1) + Pisot.u t (n - 4) - t
+Pisot.u_fifth_rec (t : ℤ) (k : ℕ) :
+  Pisot.u t (k + 6) = 2 * Pisot.u t (k + 5) - Pisot.u t (k + 4) + Pisot.u t (k + 2) - Pisot.u t (k + 1)
+Pisot.u_fifth_rec_of_ge (t : ℤ) (n : ℕ) (hn : 6 ≤ n) :
+  Pisot.u t n = 2 * Pisot.u t (n - 1) - Pisot.u t (n - 2) + Pisot.u t (n - 4) - Pisot.u t (n - 5)
+Pisot.u3_initial :
+  (Pisot.u 3 0, Pisot.u 3 1, Pisot.u 3 2, Pisot.u 3 3, Pisot.u 3 4, Pisot.u 3 5, Pisot.u 3 6) =
+    (8, 9, 11, 14, 18, 24, 32)
+Pisot.u4_initial :
+  (Pisot.u 4 0, Pisot.u 4 1, Pisot.u 4 2, Pisot.u 4 3, Pisot.u 4 4, Pisot.u 4 5, Pisot.u 4 6) =
+    (9, 10, 12, 15, 19, 25, 33)
+Pisot.candidate590_pos (n : ℕ) : 0 < Pisot.candidate590 n
+Pisot.candidate592_pos (n : ℕ) : 0 < Pisot.candidate592 n
+Pisot.candidate590_rec (n : ℕ) (hn : 6 ≤ n) :
+  Pisot.candidate590 n =
+    2 * Pisot.candidate590 (n - 1) - Pisot.candidate590 (n - 2) + Pisot.candidate590 (n - 4) -
+      Pisot.candidate590 (n - 5)
+Pisot.candidate592_rec (n : ℕ) (hn : 6 ≤ n) :
+  Pisot.candidate592 n =
+    2 * Pisot.candidate592 (n - 1) - Pisot.candidate592 (n - 2) + Pisot.candidate592 (n - 4) -
+      Pisot.candidate592 (n - 5)
+Pisot.candidate_shift (n : ℕ) : Pisot.candidate592 n = Pisot.candidate590 n + 1
+Pisot.ceilingSequence_zero (a b : ℕ) : Pisot.ceilingSequence a b 0 = a
+Pisot.ceilingSequence_one (a b : ℕ) : Pisot.ceilingSequence a b 1 = b
+Pisot.ceilingSequence_rec (a b n : ℕ) :
+  Pisot.ceilingSequence a b (n + 2) = ⌈↑(Pisot.ceilingSequence a b (n + 1)) ^ 2 / ↑(Pisot.ceilingSequence a b n)⌉₊
+Pisot.ceilingSequence_rec_int (a b n : ℕ) :
+  ↑(Pisot.ceilingSequence a b (n + 2)) = ⌈↑(Pisot.ceilingSequence a b (n + 1)) ^ 2 / ↑(Pisot.ceilingSequence a b n)⌉
+Pisot.ceilingSequence_pos {a b : ℕ} (ha : 0 < a) (hb : 0 < b) (n : ℕ) : 0 < Pisot.ceilingSequence a b n
+Pisot.A048590_zero : Pisot.A048590 0 = 8
+Pisot.A048590_one : Pisot.A048590 1 = 9
+Pisot.A048592_zero : Pisot.A048592 0 = 9
+Pisot.A048592_one : Pisot.A048592 1 = 10
+Pisot.A048590_pos (n : ℕ) : 0 < Pisot.A048590 n
+Pisot.A048592_pos (n : ℕ) : 0 < Pisot.A048592 n
+Pisot.x_iterate (k r : ℕ) : Pisot.x (k + r) = (Pisot.A ^ r).mulVec (Pisot.x k)
+Pisot.B_add9 (k : ℕ) : Pisot.B (k + 9) = 4 * Pisot.B (k + 3) + Pisot.B (k + 2) + 2 * Pisot.B (k + 1) + 3 * Pisot.B k
+Pisot.B_add17 (k : ℕ) :
+  Pisot.B (k + 17) = 50 * Pisot.B (k + 3) + 19 * Pisot.B (k + 2) + 26 * Pisot.B (k + 1) + 36 * Pisot.B k
+Pisot.B_growth6 (k : ℕ) : 43 * Pisot.B (k + 3) ≤ 8 * Pisot.B (k + 9)
+Pisot.B_growth14 (k : ℕ) : 141 * Pisot.B (k + 3) ≤ 2 * Pisot.B (k + 17)
+Pisot.B_second_difference_int (j : ℕ) : ↑(Pisot.B (j + 8)) + ↑(Pisot.B (j + 6)) - 2 * ↑(Pisot.B (j + 7)) = ↑(Pisot.B j)
+Pisot.D_shift_identity (t : ℤ) (j : ℕ) : Pisot.D t (j + 7) = Pisot.W (j + 4) 0 + t * ↑(Pisot.B j)
+Pisot.W0_tail_bounds (j : ℕ) : -↑(Pisot.B (j + 11)) ≤ Pisot.W (j + 15) 0 ∧ Pisot.W (j + 15) 0 ≤ ↑(Pisot.B (j + 11))
+Pisot.D_tail_strict (t : ℤ) (ht : t = 3 ∨ t = 4) (j : ℕ) :
+  0 < Pisot.D t (j + 18) ∧ Pisot.D t (j + 18) < Pisot.u t (j + 18)
+Pisot.D3_tail (j : ℕ) : 0 ≤ Pisot.D 3 (j + 18) ∧ Pisot.D 3 (j + 18) < Pisot.u 3 (j + 18)
+Pisot.D4_tail (j : ℕ) : 0 ≤ Pisot.D 4 (j + 18) ∧ Pisot.D 4 (j + 18) < Pisot.u 4 (j + 18)
+Pisot.D3_finite (j : ℕ) : j ∈ Finset.range 18 → 0 ≤ Pisot.D 3 j ∧ Pisot.D 3 j < Pisot.u 3 j
+Pisot.D4_finite (j : ℕ) : j ∈ Finset.range 18 → 0 ≤ Pisot.D 4 j ∧ Pisot.D 4 j < Pisot.u 4 j
+Pisot.D3_four : Pisot.D 3 4 = 0
+Pisot.D3_all (j : ℕ) : 0 ≤ Pisot.D 3 j ∧ Pisot.D 3 j < Pisot.u 3 j
+Pisot.D4_all (j : ℕ) : 0 ≤ Pisot.D 4 j ∧ Pisot.D 4 j < Pisot.u 4 j
+Pisot.W_invariant_base_values (j : Fin 14) :
+  (Pisot.maxAbs6 (Pisot.W (↑j + 15)), Pisot.B (↑j + 11)) =
+    ![(192, 200), (244, 276), (373, 381), (373, 526), (688, 726), (757, 1002), (1055, 1383), (1294, 1909), (1364, 2635),
+        (2121, 3637), (2121, 5020), (4236, 6929), (4690, 9564), (6440, 13201)]
+      j
+Pisot.W_invariant_bases (j : ℕ) : j ∈ Finset.range 14 → Pisot.maxAbs6 (Pisot.W (j + 15)) ≤ Pisot.B (j + 11)
+Pisot.W_invariant_step (j : ℕ) (h : Pisot.maxAbs6 (Pisot.W (j + 15)) ≤ Pisot.B (j + 11)) :
+  Pisot.maxAbs6 (Pisot.W (j + 14 + 15)) ≤ Pisot.B (j + 14 + 11)
+Pisot.W_invariant (j : ℕ) : Pisot.maxAbs6 (Pisot.W (j + 15)) ≤ Pisot.B (j + 11)
+Pisot.W_iterate (k r : ℕ) : Pisot.W (k + r) = (Pisot.M ^ r).mulVec (Pisot.W k)
+Pisot.W_step14 (k : ℕ) : Pisot.W (k + 14) = (Pisot.M ^ 14).mulVec (Pisot.W k)
+Pisot.W_maxAbs6_step14 (k : ℕ) : Pisot.maxAbs6 (Pisot.W (k + 14)) ≤ 61 * Pisot.maxAbs6 (Pisot.W k)
+Pisot.M_pow14_rowSums : (fun i => ∑ j, ((Pisot.M ^ 14) i j).natAbs) = ![55, 61, 59, 37, 52, 32]
+Pisot.M_pow14_rowSum_le (i : Fin 6) : ∑ j, ((Pisot.M ^ 14) i j).natAbs ≤ 61
+Pisot.maxAbs6_coord_le (z : Fin 6 → ℤ) (j : Fin 6) : (z j).natAbs ≤ Pisot.maxAbs6 z
+Pisot.row_mulVec_natAbs_le (T : Matrix (Fin 6) (Fin 6) ℤ) (z : Fin 6 → ℤ) (i : Fin 6) :
+  (T.mulVec z i).natAbs ≤ (∑ j, (T i j).natAbs) * Pisot.maxAbs6 z
+Pisot.M_pow14_maxAbs6_le (z : Fin 6 → ℤ) : Pisot.maxAbs6 ((Pisot.M ^ 14).mulVec z) ≤ 61 * Pisot.maxAbs6 z
+Pisot.A_pow6 : Pisot.A ^ 6 = !![4, 1, 2, 3; 3, 1, 1, 2; 2, 1, 1, 1; 1, 1, 1, 1]
+Pisot.A_pow14 : Pisot.A ^ 14 = !![50, 19, 26, 36; 36, 14, 19, 26; 26, 10, 14, 19; 19, 7, 10, 14]
+Pisot.M_pow14 :
+  Pisot.M ^ 14 =
+    !![16, 14, 4, -3, -10, -8;
+      6, 24, 14, 6, 1, -10;
+      -11, 6, 16, 8, 14, 4;
+      -4, 10, 8, 6, 6, -3;
+      -14, -1, 10, 7, 14, 6;
+      -8, -6, 3, 2, 7, 6]
+Pisot.x_zero : Pisot.x 0 = ![15, 11, 8, 6]
+Pisot.x_one : Pisot.x 1 = ![21, 15, 11, 8]
+Pisot.W_zero : Pisot.W 0 = ![6, 3, 6, -1, 2, 2]
+Pisot.A_mulVec (v : Fin 4 → ℤ) : Pisot.A.mulVec v = ![v 0 + v 3, v 0, v 1, v 2]
+Pisot.x_step (k : ℕ) : Pisot.x (k + 1) = Pisot.A.mulVec (Pisot.x k)
+Pisot.M_mulVec (z : Fin 6 → ℤ) : Pisot.M.mulVec z = ![-z 2, z 0 - z 4, z 1 - z 5, z 0, z 1, z 3]
+Pisot.wedge_A (v w : Fin 4 → ℤ) : Pisot.wedge (Pisot.A.mulVec v) (Pisot.A.mulVec w) = Pisot.M.mulVec (Pisot.wedge v w)
+Pisot.W_step (k : ℕ) : Pisot.W (k + 1) = Pisot.M.mulVec (Pisot.W k)
+Pisot.A048590_fifth_rec (n : ℕ) (hn : 6 ≤ n) :
+  ↑(Pisot.A048590 n) =
+    2 * ↑(Pisot.A048590 (n - 1)) - ↑(Pisot.A048590 (n - 2)) + ↑(Pisot.A048590 (n - 4)) - ↑(Pisot.A048590 (n - 5))
+Pisot.A048592_fifth_rec (n : ℕ) (hn : 6 ≤ n) :
+  ↑(Pisot.A048592 n) =
+    2 * ↑(Pisot.A048592 (n - 1)) - ↑(Pisot.A048592 (n - 2)) + ↑(Pisot.A048592 (n - 4)) - ↑(Pisot.A048592 (n - 5))
+'Pisot.eq_ceil_div_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pisot.u3_ceil_rec' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pisot.u4_ceil_rec' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pisot.int_ceiling_sequence_unique' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pisot.A048590_eq_candidate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pisot.A048592_eq_candidate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pisot.B_zero' does not depend on any axioms
+'Pisot.B_one' does not depend on any axioms
+'Pisot.B_two' does not depend on any axioms
+'Pisot.B_three' does not depend on any axioms
+'Pisot.B_rec' does not depend on any axioms
+'Pisot.B_rec_int' depends on axioms: [propext]
+'Pisot.B_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pisot.B_step' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pisot.B_monotone' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pisot.B_ratio' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pisot.u_zero' does not depend on any axioms
+'Pisot.u_succ' does not depend on any axioms
+'Pisot.u_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pisot.u_rec' depends on axioms: [propext, Quot.sound]
+'Pisot.u_rec_of_ge' depends on axioms: [propext, Quot.sound]
+'Pisot.u_fifth_rec' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pisot.u_fifth_rec_of_ge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pisot.u3_initial' depends on axioms: [propext]
+'Pisot.u4_initial' depends on axioms: [propext]
+'Pisot.candidate590_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pisot.candidate592_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pisot.candidate590_rec' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pisot.candidate592_rec' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pisot.candidate_shift' depends on axioms: [propext]
+'Pisot.ceilingSequence_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pisot.ceilingSequence_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pisot.ceilingSequence_rec' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pisot.ceilingSequence_rec_int' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pisot.ceilingSequence_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pisot.A048590_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pisot.A048590_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pisot.A048592_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pisot.A048592_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pisot.A048590_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pisot.A048592_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pisot.x_iterate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pisot.B_add9' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pisot.B_add17' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pisot.B_growth6' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pisot.B_growth14' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pisot.B_second_difference_int' depends on axioms: [propext, Quot.sound]
+'Pisot.D_shift_identity' depends on axioms: [propext, Quot.sound]
+'Pisot.W0_tail_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pisot.D_tail_strict' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pisot.D3_tail' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pisot.D4_tail' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pisot.D3_finite' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pisot.D4_finite' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pisot.D3_four' depends on axioms: [propext]
+'Pisot.D3_all' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pisot.D4_all' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pisot.W_invariant_base_values' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pisot.W_invariant_bases' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pisot.W_invariant_step' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pisot.W_invariant' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pisot.W_iterate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pisot.W_step14' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pisot.W_maxAbs6_step14' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pisot.M_pow14_rowSums' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pisot.M_pow14_rowSum_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pisot.maxAbs6_coord_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pisot.row_mulVec_natAbs_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pisot.M_pow14_maxAbs6_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pisot.A_pow6' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pisot.A_pow14' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pisot.M_pow14' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pisot.x_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pisot.x_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pisot.W_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pisot.A_mulVec' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pisot.x_step' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pisot.M_mulVec' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pisot.wedge_A' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pisot.W_step' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pisot.A048590_fifth_rec' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pisot.A048592_fifth_rec' depends on axioms: [propext, Classical.choice, Quot.sound]
+Pisot.A048590_fifth_rec : ∀ (n : ℕ),
+  6 ≤ n →
+    ↑(Pisot.A048590 n) =
+      2 * ↑(Pisot.A048590 (n - 1)) - ↑(Pisot.A048590 (n - 2)) + ↑(Pisot.A048590 (n - 4)) - ↑(Pisot.A048590 (n - 5))
+Pisot.A048592_fifth_rec : ∀ (n : ℕ),
+  6 ≤ n →
+    ↑(Pisot.A048592 n) =
+      2 * ↑(Pisot.A048592 (n - 1)) - ↑(Pisot.A048592 (n - 2)) + ↑(Pisot.A048592 (n - 4)) - ↑(Pisot.A048592 (n - 5))
+Pisot.A048590_eq_candidate : ∀ (n : ℕ), ↑(Pisot.A048590 n) = Pisot.candidate590 n
+Pisot.A048592_eq_candidate : ∀ (n : ℕ), ↑(Pisot.A048592 n) = Pisot.candidate592 n
+Pisot.ceilingSequence_rec : ∀ (a b n : ℕ),
+  Pisot.ceilingSequence a b (n + 2) = ⌈↑(Pisot.ceilingSequence a b (n + 1)) ^ 2 / ↑(Pisot.ceilingSequence a b n)⌉₊
+Pisot.eq_ceil_div_iff : ∀ (v q d : ℤ), 0 < d → (v = ⌈↑q / ↑d⌉ ↔ 0 ≤ v * d - q ∧ v * d - q < d)
+Pisot.D3_all : ∀ (j : ℕ), 0 ≤ Pisot.D 3 j ∧ Pisot.D 3 j < Pisot.u 3 j
+Pisot.D4_all : ∀ (j : ℕ), 0 ≤ Pisot.D 4 j ∧ Pisot.D 4 j < Pisot.u 4 j
+

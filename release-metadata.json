@@ -1,0 +1,26 @@
+{
+  "status": "public source repository; GitHub release and Zenodo DOI pending",
+  "repository_name": "pisot-ceiling-recurrences",
+  "owner": "tahahhsr-code",
+  "repository_url": "https://github.com/tahahhsr-code/pisot-ceiling-recurrences",
+  "release_tag": "v1.0.0",
+  "software_version": "1.0.0",
+  "unchanged_lake_package_version": "0.1.0",
+  "human_formalization_author": "Taha Kabiri",
+  "license": "Apache-2.0",
+  "license_approved": true,
+  "ai_disclosure": "see AUTHORS.md",
+  "doi": null,
+  "github_release_published": false,
+  "title": "Lean formalization of the fifth-order recurrences for OEIS A048590 and A048592",
+  "description": "Lean 4 formal verification of the fifth-order recurrences for the ceiling-defined Pisot sequences OEIS A048590 and A048592.",
+  "topics": [
+    "lean4",
+    "formal-verification",
+    "mathlib",
+    "number-theory",
+    "integer-sequences",
+    "oeis",
+    "pisot-sequences"
+  ]
+}

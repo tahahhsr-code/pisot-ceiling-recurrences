@@ -1,0 +1,51 @@
+{
+  "prepared_date": "2026-10-30",
+  "tested_mathematical_commit": "a37dfa299f63b8cbd753a9dc787a1cf61b02b50c",
+  "tested_tree": "87e3140bdfdadf1e478ff1b0a357b0746152ae81",
+  "final_m6_documentation_commit": "6ea11cf7905a4759dc34817109daf1a6fce07075",
+  "source_branch": "formalization/lean4-matrix",
+  "branch_comparison_at_retrieval": "identical to final M6 commit",
+  "m6_vs_tested_changed_paths": [
+    "lean/FINAL_VERIFICATION_REPORT.md",
+    "lean/STATUS.md",
+    "lean/logs/M6-clean-build.log",
+    "lean/logs/M6-final-audit.log"
+  ],
+  "retrieval": "authenticated GitHub read-only file retrieval at final M6 commit; UTF-8 bytes checked against Git blob SHA-1 and M6 SHA-256",
+  "private_repository_identifier": "intentionally omitted from distributable snapshot; immutable commit and original file paths retained",
+  "original_evidence": {
+    "lean/FINAL_VERIFICATION_REPORT.md": {
+      "git_blob_sha1": "86b010c73cd9075b19726082959afd99083ee3f3",
+      "sha256": "c783bbb41774458b81448c5d47ed3e2192cfa0a9bbdd1f14c5852d67376fdd9a"
+    },
+    "lean/FORMALIZATION_CONTRACT.md": {
+      "git_blob_sha1": "1ca4d77d3c58406089390065988707b49feb4d35",
+      "sha256": "e9b45802c5dc5ff810c9881658045d31447a232698f09fdf5a3f87036276c0b6"
+    },
+    "lean/STATUS.md": {
+      "git_blob_sha1": "640a50e68e83a3c3109d364334875ca4a36d3fcb",
+      "sha256": "a5ca01c6b0071a0bb24e7e544064cf8fdc5feac796efaa8219e6272e33ae5dd9"
+    },
+    "lean/logs/M6-final-audit.log": {
+      "git_blob_sha1": "7269d1a74a4c95910bf5eff87818ce660f157562",
+      "sha256": "18e12a4e0c97ca3e13118105ac7fdce7d5dcf11ff7c031c02f4ecbc6bc4baedb"
+    },
+    "lean/logs/M6-clean-build.log": {
+      "git_blob_sha1": "f7becaea12021e3015021504b72708701a5892d7",
+      "sha256": "ded77124f87f87b8e8130cb1f78f199f22d859ed1e8be20358dcbcdaf321c709"
+    },
+    "lean/README.md": {
+      "git_blob_sha1": "61a77cad81d06ffb090db434b37ad36a7755deff",
+      "sha256": "2124bb19acec811276860a29f25a7b30f3f5d8f718f6b21a7d0cfd72cfe531e3"
+    }
+  },
+  "m6_audit_extraction": {
+    "input": "exact bytes between BEGIN FINAL AUDIT INPUT newline and END FINAL AUDIT INPUT newline",
+    "output": "exact content between BEGIN LEAN AUDIT OUTPUT newline and END LEAN AUDIT OUTPUT newline, excluding first timestamp and absolute-command lines and final runner Exit code: 0 line",
+    "audit_input_sha256": "4003107f0a75731218cf166dfd3b96bad53638a4fc801d94a3a88dc22351e3af",
+    "historical_output_excerpt_sha256": "960bd31891d90cf7c97c7322d923a99b7735e4cecca6a32ba65bfc39886b7ba2",
+    "historical_exit_status": 0
+  },
+  "fresh_release_lean_build": "Mission 1: not run. Mission 2: clean standalone build exit 0. Mission 3 successor: see companion exact-artifact verification report.",
+  "mission2_source_zip_sha256": "761fd3d0cbc8fd8d664ad10741f4dff702379282564f1cecb9957aca1252d42c"
+}

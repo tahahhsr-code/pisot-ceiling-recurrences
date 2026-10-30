@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+message: "If you use this formalization, please cite the software using these metadata."
+title: "Lean formalization of the fifth-order recurrences for OEIS A048590 and A048592"
+type: software
+version: "1.0.0"
+authors:
+  - family-names: Kabiri
+    given-names: Taha
+repository-code: "https://github.com/tahahhsr-code/pisot-ceiling-recurrences"
+license: "Apache-2.0"
+abstract: >-
+  Lean 4 formal verification of the fifth-order recurrences for the original
+  ceiling-defined Pisot sequences OEIS A048590 and A048592, for all natural
+  indices at least six. Uses an elementary matrix and determinant argument.
+  ChatGPT/Codex assistance is disclosed in AUTHORS.md. Does not formalize all
+  results in separate manuscripts or claim independent human peer review.
+keywords:
+  - Lean 4
+  - formal verification
+  - Pisot sequences
+  - OEIS A048590
+  - OEIS A048592
+  - linear recurrences

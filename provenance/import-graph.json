@@ -1,0 +1,89 @@
+{
+  "Pisot.CeilingIdentification": [
+    "Pisot.DeterminantBounds"
+  ],
+  "Pisot.Core": [
+    "Mathlib"
+  ],
+  "Pisot.CoreGrowth": [
+    "Pisot.MatrixPowers"
+  ],
+  "Pisot.DeterminantBounds": [
+    "Pisot.Invariant14"
+  ],
+  "Pisot.Invariant14": [
+    "Pisot.MatrixIteration",
+    "Pisot.CoreGrowth"
+  ],
+  "Pisot.M1Audit": [
+    "Pisot.Core"
+  ],
+  "Pisot.M2AAudit": [
+    "Pisot.MatrixStep"
+  ],
+  "Pisot.M2B1Audit": [
+    "Pisot.MatrixPowers"
+  ],
+  "Pisot.M2B2A1Audit": [
+    "Pisot.MatrixNorm"
+  ],
+  "Pisot.M2B2A2Audit": [
+    "Pisot.MatrixNorm"
+  ],
+  "Pisot.M2B2BAudit": [
+    "Pisot.MatrixIteration"
+  ],
+  "Pisot.M3A1Audit": [
+    "Pisot.CoreGrowth"
+  ],
+  "Pisot.M3A2Audit": [
+    "Pisot.CoreGrowth"
+  ],
+  "Pisot.M3BAudit": [
+    "Pisot.Invariant14"
+  ],
+  "Pisot.M4Audit": [
+    "Pisot.DeterminantBounds"
+  ],
+  "Pisot.M5Audit": [
+    "Pisot.OriginalRecurrences"
+  ],
+  "Pisot.MatrixIteration": [
+    "Pisot.MatrixNorm"
+  ],
+  "Pisot.MatrixNorm": [
+    "Pisot.MatrixPowers"
+  ],
+  "Pisot.MatrixPowers": [
+    "Pisot.MatrixStep"
+  ],
+  "Pisot.MatrixStep": [
+    "Pisot.Core"
+  ],
+  "Pisot.OriginalRecurrences": [
+    "Pisot.CeilingIdentification"
+  ],
+  "Pisot": [
+    "Pisot.Core",
+    "Pisot.M1Audit",
+    "Pisot.MatrixStep",
+    "Pisot.M2AAudit",
+    "Pisot.MatrixPowers",
+    "Pisot.M2B1Audit",
+    "Pisot.MatrixNorm",
+    "Pisot.M2B2A1Audit",
+    "Pisot.M2B2A2Audit",
+    "Pisot.MatrixIteration",
+    "Pisot.M2B2BAudit",
+    "Pisot.CoreGrowth",
+    "Pisot.M3A1Audit",
+    "Pisot.M3A2Audit",
+    "Pisot.Invariant14",
+    "Pisot.M3BAudit",
+    "Pisot.DeterminantBounds",
+    "Pisot.M4Audit",
+    "Pisot.CeilingIdentification",
+    "Pisot.OriginalRecurrences",
+    "Pisot.M5Audit"
+  ]
+}

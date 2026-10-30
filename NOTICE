@@ -1,0 +1,7 @@
+pisot-ceiling-recurrences
+Copyright 2026 Taha Kabiri
+
+Lean formalization of the fifth-order recurrences for OEIS A048590 and A048592.
+ChatGPT/Codex assisted development, code generation, verification workflows and documentation.
+See AUTHORS.md for mathematical attribution and tool contributions.
+External dependencies retain their own licenses and are not bundled here.
