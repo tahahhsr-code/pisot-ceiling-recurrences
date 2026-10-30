@@ -1,6 +1,7 @@
 # Pisot ceiling recurrences — Lean 4 formal verification
 
 [![License: Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
+[![DOI](https://zenodo.org/badge/1440173705.svg)](https://doi.org/10.5281/zenodo.23818892)
 
 **Machine-checked Lean 4 proofs of the fifth-order recurrences for OEIS [A048590](https://oeis.org/A048590) and [A048592](https://oeis.org/A048592).**
 
@@ -48,4 +49,4 @@ See the [exact theorem statements and mathematical summary](docs/TECHNICAL_VERIF
 
 ## Citation, license and attribution
 
-Please use [`CITATION.cff`](CITATION.cff) to cite version **1.0.0**. The citation DOI will be added only if a real DOI is assigned to this release; do not infer a DOI from this repository. The original materials in this repository are provided under the [Apache License 2.0](LICENSE) to the extent the author holds the necessary rights; see [NOTICE](NOTICE) and [third-party dependency notes](docs/THIRD_PARTY_REVIEW.md). External Lean/Mathlib source and binaries are not bundled. Original OEIS entry and conjecture attribution is distinguished from software/formalization authorship in [AUTHORS.md](AUTHORS.md).
+Please use [`CITATION.cff`](CITATION.cff) to cite version **1.0.0**. Zenodo DOI for GitHub release **v1.0.0**: [**10.5281/zenodo.23818892**](https://doi.org/10.5281/zenodo.23818892). The original materials in this repository are provided under the [Apache License 2.0](LICENSE) to the extent the author holds the necessary rights; see [NOTICE](NOTICE) and [third-party dependency notes](docs/THIRD_PARTY_REVIEW.md). External Lean/Mathlib source and binaries are not bundled. Original OEIS entry and conjecture attribution is distinguished from software/formalization authorship in [AUTHORS.md](AUTHORS.md).
